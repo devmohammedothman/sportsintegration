@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration>
+	<Appenders>
+		<Console name="Console" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%style{%d{ISO8601}}{black} %highlight{%-5level }[%style{%t}{bright,blue}] %style{%C{1.}}{bright,yellow}: %msg%n%throwable" />
+		</Console>
+
+		<RollingFile name="InfoRollingFile"
+			fileName="E:/SportsLogs/sportsApp_info.log"
+			filePattern="E:/SportsLogs/$${date:yyyy-MM}/sportsApp_info-%d{-dd-MMMM-yyyy}-%i.log.gz">
+			<PatternLayout>
+				<pattern>%d %p %C{1.} [%t] %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<!-- rollover on startup, daily and when the file reaches 10 MegaBytes -->
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+		
+		<RollingFile name="ErrorRollingFile"
+			fileName="E:/SportsLogs/sportsApp_Error.log"
+			filePattern="E:/SportsLogs/$${date:yyyy-MM}/sportsApp_Error-%d{-dd-MMMM-yyyy}-%i.log.gz">
+			<PatternLayout>
+				<pattern>%d %p %C{1.} [%t] %m%n</pattern>
+			</PatternLayout>
+			<Policies>
+				<!-- rollover on startup, daily and when the file reaches 10 MegaBytes -->
+				<OnStartupTriggeringPolicy />
+				<SizeBasedTriggeringPolicy size="10 MB" />
+				<TimeBasedTriggeringPolicy />
+			</Policies>
+		</RollingFile>
+	</Appenders>
+
+	<Loggers>
+		<!-- LOG everything at INFO level -->
+		<Root level="info" additivity="false">
+			<AppenderRef ref="InfoRollingFile" level="info" />
+		</Root>
+
+		<!-- LOG "com.quasas.sports.boot*" at TRACE level -->
+		<Logger name="com.quasas.sports.boot" level="info" additivity="false">
+			<AppenderRef ref="Console" level="info" />
+			<AppenderRef ref="InfoRollingFile" level="info" />
+			<AppenderRef ref="ErrorRollingFile" level="error" />
+		</Logger>
+		<!-- <Logger name="com.quasas.sports.boot" level="error">
+			<AppenderRef ref="ErrorRollingFile" />
+		</Logger> -->
+	</Loggers>
+
+</Configuration>
