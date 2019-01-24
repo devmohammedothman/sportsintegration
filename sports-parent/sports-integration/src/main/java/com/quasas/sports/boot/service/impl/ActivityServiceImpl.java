@@ -1,9 +1,12 @@
 package com.quasas.sports.boot.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
 import javax.transaction.Transactional;
 
+import org.modelmapper.PropertyMap;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestClientException;
@@ -18,20 +21,37 @@ import com.quasas.sports.gen.client.model.SummaryActivity;
 
 @Service
 @Transactional
-public class ActivityServiceImpl implements ActivityService {
+public class ActivityServiceImpl extends BasicServiceImpl<SummaryActivity, Activity> implements ActivityService {
 
 	@Autowired
 	private ActivitiesApi activityApi;
 
 	@Autowired
 	private ActivityDao activityDao;
+	
+	
+	@PostConstruct
+	public void init()
+	{
+		configureMapperLocally();
+	}
 
 	@Override
-	public DetailedActivity getActivityById(Long id, Boolean includeAllEfforts) throws SportsApplicationException {
+	public Activity getActivityById(Long id, Boolean includeAllEfforts) throws SportsApplicationException {
 
 		try {
 			// get activity details from API
-			DetailedActivity resultActivityObj = activityApi.getActivityById(id, includeAllEfforts);
+			DetailedActivity detailedActivityObj = activityApi.getActivityById(id, includeAllEfforts);
+			
+			//convert from Detailed Activity to Summary Activity
+			SummaryActivity convertedSummaryActivity = new SummaryActivity();
+			convertedSummaryActivity = convertFromDetailedToSummary(convertedSummaryActivity, detailedActivityObj);
+
+			//then convert Summary activity to Entity Activity
+			Activity resultActivityObj = new Activity();
+			resultActivityObj = convertToEntity(resultActivityObj, convertedSummaryActivity);
+			
+			
 			return resultActivityObj;
 		} catch (RestClientException rsEx) {
 			throw new SportsApplicationException(
@@ -43,19 +63,37 @@ public class ActivityServiceImpl implements ActivityService {
 	}
 
 	@Override
-	public List<SummaryActivity> getLoggedInAthleteActivities() throws SportsApplicationException {
+	public List<Activity> getLoggedInAthleteActivities() throws SportsApplicationException {
 
 		try {
+			
 			// call get Logged In AthleteActivites from Client Api
-			List<SummaryActivity> resultActivityList = activityApi.getLoggedInAthleteActivities(null,null,null,null);
+			List<SummaryActivity> sourceActivityList = activityApi.getLoggedInAthleteActivities(null,null,null,null);
 
+			//Define result Activity List
+			List<Activity> resultActivityList = new ArrayList<Activity>();
+			//convert API source Activity Object to Entity Activity
+			if(sourceActivityList != null && sourceActivityList.size() > 0)
+			{
+				for(SummaryActivity item : sourceActivityList)
+				{
+					Activity convertedActivity = new Activity();
+					convertedActivity =  convertToEntity(convertedActivity, item);
+					
+					//add converted Activity object to result activity list
+					resultActivityList.add(convertedActivity);
+				}
+			}
+			
+			
 			return resultActivityList;
+			
 		} catch (RestClientException ex) {
 			throw new SportsApplicationException(
-					"Rest Exception While Client Service to get Logged In Athlete Activities >> " + ex.getMessage());
+					"Rest Exception While Calling Service to get Logged In Athlete Activities >> " + ex.getMessage());
 		} catch (Exception ex) {
 			throw new SportsApplicationException(
-					"General Exception While Client Service to get Logged In Athlete Activities >> " + ex.getMessage());
+					"General Exception While Calling Service to get Logged In Athlete Activities >> " + ex.getMessage());
 		}
 
 	}
@@ -68,6 +106,15 @@ public class ActivityServiceImpl implements ActivityService {
 			throw new SportsApplicationException(
 					"General Exception While Adding Activity Object to Database >> " + ex.getMessage());
 		}
+	}
+		
+	protected void configureMapperLocally() {
+		modelMapper.addMappings(new PropertyMap<SummaryActivity,Activity >() {
+			protected void configure() {
+				map().setSourceId(source.getId());
+				map().setAthlete(source.getAthlete().getId());
+			}
+		});
 	}
 
 }

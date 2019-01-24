@@ -13,7 +13,6 @@ import com.quasas.sports.boot.service.ActivityService;
 import com.quasas.sports.boot.shared.ResponseDTO;
 import com.quasas.sports.boot.shared.RestProvider;
 import com.quasas.sports.boot.shared.StatusCode;
-import com.quasas.sports.gen.client.model.DetailedActivity;
 
 @RestController
 @RequestMapping("api/activity")
@@ -35,7 +34,7 @@ public class SportController {
 	@GetMapping("/getActivityById/{id}")
 	public ResponseEntity<ResponseDTO> getActivityById(@PathVariable("id") Long id) throws SportsApplicationException 
 	{
-		DetailedActivity resultActivityObj = activityService.getActivityById(id, Boolean.FALSE);
+		Activity resultActivityObj = activityService.getActivityById(id, Boolean.FALSE);
 						
 		ResponseDTO responseDto = null;
 		if(resultActivityObj !=null)

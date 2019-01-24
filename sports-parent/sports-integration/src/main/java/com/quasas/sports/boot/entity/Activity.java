@@ -22,7 +22,7 @@ public class Activity implements Serializable {
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "id")
-	private int id;
+	private Long identifierKey;
 
 	@Column(name = "source_id")
 	private Long sourceId;
@@ -93,12 +93,12 @@ public class Activity implements Serializable {
 	@Column(name = "visibility")
 	private Boolean visibility;
 
-	public int getId() {
-		return id;
+	public Long getIdentifierKey() {
+		return identifierKey;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setIdentifierKey(Long id) {
+		this.identifierKey = id;
 	}
 
 	public Long getSourceId() {
@@ -287,7 +287,7 @@ public class Activity implements Serializable {
 
 	@Override
 	public String toString() {
-		return "Activity [id=" + id + ", sourceId=" + sourceId + ", name=" + name + ", startDate=" + startDate
+		return "Activity [id=" + identifierKey + ", sourceId=" + sourceId + ", name=" + name + ", startDate=" + startDate
 				+ ", trainer=" + trainer + ", commute=" + commute + ", manual=" + manual + ", _private=" + _private
 				+ ", visibility=" + visibility + "]";
 	}
