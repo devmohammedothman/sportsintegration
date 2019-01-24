@@ -13,6 +13,7 @@
 
 package com.quasas.sports.gen.client.api;
 
+
 import org.junit.Ignore;
 import org.junit.Test;
 

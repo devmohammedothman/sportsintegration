@@ -13,6 +13,7 @@ import org.springframework.stereotype.Component;
 import com.quasas.sports.boot.entity.Activity;
 import com.quasas.sports.boot.exception.SportsApplicationException;
 import com.quasas.sports.boot.service.ActivityService;
+import com.quasas.sports.gen.client.invoker.ApiClient;
 
 @Component
 public class SportsAppIntegrateInitializer {
@@ -23,11 +24,14 @@ public class SportsAppIntegrateInitializer {
 	private static final DateTimeFormatter dateTimeFormatter = DateTimeFormatter.ofPattern("HH:mm:ss");
 
 	@Autowired
+	private ApiClient apiClient;
+
+	@Autowired
 	ActivityService activityService;
-	
-	
+
 	@Scheduled(fixedDelayString = "#{${strava.api.integration.delayTime}}", initialDelayString = "#{${strava.api.integration.initialTime}}")
 	public void scheduleCurrentAthleteActivities() {
+
 		logger.info("Scheduled Task for Getting Current Athlete Activities Started :: Execution Time - {}",
 				dateTimeFormatter.format(LocalDateTime.now()));
 
@@ -37,10 +41,9 @@ public class SportsAppIntegrateInitializer {
 			List<Activity> resultActivityList = activityService.getLoggedInAthleteActivities();
 
 			if (resultActivityList != null && resultActivityList.size() > 0) {
-				
+
 				// Loop over list of result activities to save in DB
-				for (Activity item : resultActivityList) 
-				{
+				for (Activity item : resultActivityList) {
 					activityService.save(item);
 				}
 			} else
@@ -56,6 +59,25 @@ public class SportsAppIntegrateInitializer {
 
 		logger.info("Scheduled Task for Getting Current Athlete Activities End :: Execution Time - {}",
 				dateTimeFormatter.format(LocalDateTime.now()));
+	}
+
+	@Scheduled(fixedDelayString = "#{${strava.api.integration.refreshtoken.delayTime}}", initialDelayString = "#{${strava.api.integration.refreshtoken.initialTime}}")
+	public void scheduleRefreshToken() {
+
+		logger.info("Scheduled Task for Refresh Token Started :: Execution Time - {}",
+				dateTimeFormatter.format(LocalDateTime.now()));
+
+		try {
+			// call refresh token method from API client
+			apiClient.refreshToken();
+		} catch (Exception ex) {
+			logger.error("Scheduled Task for Getting Refresh Token :: Execution Time - {} :: Error Details {}",
+					dateTimeFormatter.format(LocalDateTime.now()), ex.getMessage());
+		}
+
+		logger.info("Scheduled Task for Refresh Token Ended :: Execution Time - {}",
+				dateTimeFormatter.format(LocalDateTime.now()));
+
 	}
 
 }

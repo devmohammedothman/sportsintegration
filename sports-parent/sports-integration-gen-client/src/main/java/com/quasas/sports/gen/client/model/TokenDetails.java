@@ -5,7 +5,7 @@ import java.io.Serializable;
 import com.fasterxml.jackson.annotation.JsonProperty;
 
 
-public class TokenDetils implements Serializable{
+public class TokenDetails implements Serializable{
 
 	/**
 	 * 
@@ -32,7 +32,7 @@ public class TokenDetils implements Serializable{
 	
 	
 
-	public TokenDetils() {
+	public TokenDetails() {
 	}
 
 	public String getTokenType() {

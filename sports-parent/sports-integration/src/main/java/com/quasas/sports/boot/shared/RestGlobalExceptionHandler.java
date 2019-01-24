@@ -14,7 +14,7 @@ public class RestGlobalExceptionHandler {
 		@ExceptionHandler
 		public ResponseEntity<ResponseError> handleException(SportsApplicationException ex)
 		{
-			ResponseError resError = new ResponseError(StatusCode.BADREQUEST,ex,System.currentTimeMillis());
+			ResponseError resError = new ResponseError(StatusCode.BADREQUEST,ex.getMessage(),System.currentTimeMillis());
 			return new ResponseEntity<>(resError,HttpStatus.BAD_REQUEST);
 		}
 		

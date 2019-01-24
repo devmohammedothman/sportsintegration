@@ -60,7 +60,7 @@ import com.quasas.sports.gen.client.invoker.auth.ApiKeyAuth;
 import com.quasas.sports.gen.client.invoker.auth.Authentication;
 import com.quasas.sports.gen.client.invoker.auth.HttpBasicAuth;
 import com.quasas.sports.gen.client.invoker.auth.OAuth;
-import com.quasas.sports.gen.client.model.TokenDetils;
+import com.quasas.sports.gen.client.model.TokenDetails;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-20T18:02:14.787+02:00")
 @Component("com.quasas.sports.gen.client.invoker.ApiClient")
@@ -78,8 +78,8 @@ public class ApiClient {
 			return StringUtils.collectionToDelimitedString(collection, separator);
 		}
 	}
-	
-	private final Logger log =  LogManager.getLogger(ApiClient.class);
+
+	private final Logger log = LogManager.getLogger(ApiClient.class);
 
 	private boolean debugging = false;
 
@@ -106,7 +106,7 @@ public class ApiClient {
 
 	private String code;
 
-	private TokenDetils tokenDetails;
+	private TokenDetails tokenDetails;
 
 	public ApiClient() {
 
@@ -641,39 +641,69 @@ public class ApiClient {
 		}
 		// This allows us to read the response more than once - Necessary for debugging.
 		restTemplate.setRequestFactory(new BufferingClientHttpRequestFactory(restTemplate.getRequestFactory()));
-
-		// Build Access Token based on Client id and Client Secret
-
+		
+		//Get Access Token for First Time
+		
 		HttpHeaders headers = new HttpHeaders();
 		headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
 		headers.set("Accept", "application/json");
 
-//		 String params = "client_id=31769&client_secret=5088c7ea25210b9835c5797fc279edd7745ed243&code=964db11814b0f245384299f02057f56998ac790b&grant_type=authorization_code";
 		StringBuilder params = new StringBuilder();
 		params.append("client_id=" + this.clientId);
 		params.append("&client_secret=" + this.clientSecret);
 		params.append("&code=" + this.code);
 		params.append("&grant_type=" + this.grantType);
-		System.out.println(params.toString());
 
 		try {
 			HttpEntity<String> request = new HttpEntity<String>(params.toString(), headers);
 
-			ResponseEntity<TokenDetils> tokenResponse = restTemplate.postForEntity(this.accessTokenUri, request,
-					TokenDetils.class);
-			this.tokenDetails = tokenResponse.getBody();
+			ResponseEntity<TokenDetails> tokenResponse = restTemplate.postForEntity(this.accessTokenUri, request,
+					TokenDetails.class);
+			tokenDetails = tokenResponse.getBody();
+			setAccessToken(tokenDetails.getAccessToken());
 			
-			log.info("Get Authentication Token from API :: {}",this.tokenDetails);
+			log.info("Get Authentication Token from API :: {}", this.tokenDetails);
+
+		} catch (Exception ex) {
+			log.error("Error When Get Authentication Token from API :: Error Details{}", ex.getMessage());
+		}
+		
+		
+		////////////////////////////////////////////////////////
+
+		return restTemplate;
+	}
+
+	public TokenDetails refreshToken() {
+		try {
+
+			// Build Refresh Access Token based on Client id and Client Secret
+
+			HttpHeaders headers = new HttpHeaders();
+			headers.setContentType(MediaType.APPLICATION_FORM_URLENCODED);
+			headers.set("Accept", "application/json");
+
+			StringBuilder params = new StringBuilder();
+			params.append("client_id=" + this.clientId);
+			params.append("&client_secret=" + this.clientSecret);
+			params.append("&code=" + this.code);
+			params.append("&grant_type=refresh_token");
+			params.append("&refresh_token=" + ((tokenDetails!= null) ? tokenDetails.getAccessToken() : ""));
+
+			HttpEntity<String> request = new HttpEntity<String>(params.toString(), headers);
+
+			ResponseEntity<TokenDetails> tokenResponse = restTemplate.postForEntity(this.accessTokenUri, request,
+					TokenDetails.class);
+			tokenDetails = tokenResponse.getBody();
+
+			log.info("Get Refresh Token from API :: {}", this.tokenDetails);
 
 			setAccessToken(this.tokenDetails.getAccessToken());
 
 		} catch (Exception ex) {
-			log.error("Error When Get Authentication Token from API :: Error Details{}", 
-				ex.getMessage() );
+			log.error("Error When Get Refresh Token from API :: Error Details{}", ex.getMessage());
 		}
-		////////////////////////////////////////////////////////
-
-		return restTemplate;
+		return tokenDetails;
 	}
 
 	/**
@@ -742,12 +772,12 @@ public class ApiClient {
 //		this.code = code;
 //	}
 
-	public TokenDetils getTokenDetails() {
+	public TokenDetails getTokenDetails() {
 		return tokenDetails;
 	}
 
 	private class ApiClientHttpRequestInterceptor implements ClientHttpRequestInterceptor {
-		private final Logger log =  LogManager.getLogger(ApiClientHttpRequestInterceptor.class);//LogFactory.getLog(ApiClientHttpRequestInterceptor.class);
+		private final Logger log = LogManager.getLogger(ApiClientHttpRequestInterceptor.class);// LogFactory.getLog(ApiClientHttpRequestInterceptor.class);
 
 		@Override
 		public ClientHttpResponse intercept(HttpRequest request, byte[] body, ClientHttpRequestExecution execution)

@@ -14,35 +14,13 @@ public class ResponseError implements Serializable {
 	private int customCode;
 
 	private long timeStamp;
-	
+
 	private String customMessage;
-	
-	
-	private SportsApplicationException sportsException;
 
-	public ResponseError(StatusCode customCode, SportsApplicationException sportsException, long timeStamp) {
-		this.customCode = customCode.getValue();
-		this.customMessage = sportsException.getMessage();
-		this.timeStamp = timeStamp;
-		this.sportsException = sportsException;
-	}
-
-	
-	
-	public ResponseError(StatusCode customCode, String customMessage,long timeStamp) {
+	public ResponseError(StatusCode customCode, String customMessage, long timeStamp) {
 		this.customCode = customCode.getValue();
 		this.customMessage = customMessage;
 		this.timeStamp = timeStamp;
-	}
-
-
-
-	public SportsApplicationException getSportsException() {
-		return sportsException;
-	}
-
-	public void setSportsException(SportsApplicationException sportsException) {
-		this.sportsException = sportsException;
 	}
 
 	public int getCustomCode() {

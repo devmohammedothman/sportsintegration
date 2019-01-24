@@ -211,13 +211,6 @@
 			<version>${swagger-annotations-version}</version>
 		</dependency>
 
-		<!-- HTTP client: Spring RestTemplate -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-web</artifactId>
-			<version>${spring.version}</version>
-		</dependency>
-
 		<!-- JSON processing: jackson -->
 		<dependency>
 			<groupId>com.fasterxml.jackson.core</groupId>
@@ -230,13 +223,7 @@
 			<version>${jackson-threetenbp-version}</version>
 		</dependency>
 
-		<!-- test dependencies -->
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-test</artifactId>
-			<scope>test</scope>
-			<version>${spring.version}</version>
-		</dependency>
+		
 
 	</dependencies>
 	<properties>
