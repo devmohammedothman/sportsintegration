@@ -13,26 +13,15 @@
 
 package com.quasas.sports.gen.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.quasas.sports.gen.client.model.ActivityType;
-import com.quasas.sports.gen.client.model.DetailedSegmentEffort;
-import com.quasas.sports.gen.client.model.Lap;
-import com.quasas.sports.gen.client.model.LatLng;
-import com.quasas.sports.gen.client.model.MetaAthlete;
-import com.quasas.sports.gen.client.model.PhotosSummary;
-import com.quasas.sports.gen.client.model.PolylineMap;
-import com.quasas.sports.gen.client.model.Split;
-import com.quasas.sports.gen.client.model.SummaryActivity;
-import com.quasas.sports.gen.client.model.SummaryGear;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import org.threeten.bp.OffsetDateTime;
+
+import com.fasterxml.jackson.annotation.JsonProperty;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * DetailedActivity
@@ -162,8 +151,8 @@ public class DetailedActivity {
   @JsonProperty("photos")
   private PhotosSummary photos = null;
 
-  @JsonProperty("gear")
-  private SummaryGear gear = null;
+//  @JsonProperty("gear")
+//  private SummaryGear gear = null;
 
   @JsonProperty("calories")
   private Float calories = null;
@@ -928,23 +917,20 @@ public class DetailedActivity {
     this.photos = photos;
   }
 
-  public DetailedActivity gear(SummaryGear gear) {
-    this.gear = gear;
-    return this;
-  }
+//  public DetailedActivity gear(SummaryGear gear) {
+//    this.gear = gear;
+//    return this;
+//  }
 
    /**
    * Get gear
    * @return gear
   **/
-  @ApiModelProperty(value = "")
-  public SummaryGear getGear() {
-    return gear;
-  }
-
-  public void setGear(SummaryGear gear) {
-    this.gear = gear;
-  }
+	/*
+	 * @ApiModelProperty(value = "") public SummaryGear getGear() { return gear; }
+	 * 
+	 * public void setGear(SummaryGear gear) { this.gear = gear; }
+	 */
 
   public DetailedActivity calories(Float calories) {
     this.calories = calories;
@@ -1181,7 +1167,7 @@ public class DetailedActivity {
         Objects.equals(this.weightedAverageWatts, detailedActivity.weightedAverageWatts) &&
         Objects.equals(this.description, detailedActivity.description) &&
         Objects.equals(this.photos, detailedActivity.photos) &&
-        Objects.equals(this.gear, detailedActivity.gear) &&
+//        Objects.equals(this.gear, detailedActivity.gear) &&
         Objects.equals(this.calories, detailedActivity.calories) &&
         Objects.equals(this.segmentEfforts, detailedActivity.segmentEfforts) &&
         Objects.equals(this.deviceName, detailedActivity.deviceName) &&
@@ -1194,7 +1180,7 @@ public class DetailedActivity {
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, externalId, uploadId, athlete, name, distance, movingTime, elapsedTime, totalElevationGain, elevHigh, elevLow, type, startDate, startDateLocal, timezone, startLatlng, endLatlng, achievementCount, kudosCount, commentCount, athleteCount, photoCount, totalPhotoCount, map, trainer, commute, manual, _private, flagged, workoutType, averageSpeed, maxSpeed, hasKudoed, gearId, kilojoules, averageWatts, deviceWatts, maxWatts, weightedAverageWatts, description, photos, gear, calories, segmentEfforts, deviceName, embedToken, splitsMetric, splitsStandard, laps, bestEfforts);
+    return Objects.hash(id, externalId, uploadId, athlete, name, distance, movingTime, elapsedTime, totalElevationGain, elevHigh, elevLow, type, startDate, startDateLocal, timezone, startLatlng, endLatlng, achievementCount, kudosCount, commentCount, athleteCount, photoCount, totalPhotoCount, map, trainer, commute, manual, _private, flagged, workoutType, averageSpeed, maxSpeed, hasKudoed, gearId, kilojoules, averageWatts, deviceWatts, maxWatts, weightedAverageWatts, description, photos, calories, segmentEfforts, deviceName, embedToken, splitsMetric, splitsStandard, laps, bestEfforts);
   }
 
 
@@ -1244,7 +1230,7 @@ public class DetailedActivity {
     sb.append("    weightedAverageWatts: ").append(toIndentedString(weightedAverageWatts)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    photos: ").append(toIndentedString(photos)).append("\n");
-    sb.append("    gear: ").append(toIndentedString(gear)).append("\n");
+//    sb.append("    gear: ").append(toIndentedString(gear)).append("\n");
     sb.append("    calories: ").append(toIndentedString(calories)).append("\n");
     sb.append("    segmentEfforts: ").append(toIndentedString(segmentEfforts)).append("\n");
     sb.append("    deviceName: ").append(toIndentedString(deviceName)).append("\n");

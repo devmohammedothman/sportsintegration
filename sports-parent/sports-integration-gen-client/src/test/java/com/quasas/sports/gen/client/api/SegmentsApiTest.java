@@ -13,18 +13,15 @@
 
 package com.quasas.sports.gen.client.api;
 
+import java.util.List;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
 import com.quasas.sports.gen.client.model.DetailedSegment;
 import com.quasas.sports.gen.client.model.ExplorerResponse;
-import com.quasas.sports.gen.client.model.Fault;
 import com.quasas.sports.gen.client.model.SegmentLeaderboard;
 import com.quasas.sports.gen.client.model.SummarySegment;
-import org.junit.Test;
-import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
 /**
  * API tests for SegmentsApi

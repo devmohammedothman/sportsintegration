@@ -8,7 +8,6 @@ import java.io.UnsupportedEncodingException;
 import java.nio.charset.StandardCharsets;
 import java.text.DateFormat;
 import java.text.ParseException;
-import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.Collections;
@@ -26,7 +25,6 @@ import java.util.TimeZone;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpEntity;
@@ -58,7 +56,6 @@ import org.threeten.bp.ZonedDateTime;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.fasterxml.jackson.datatype.threetenbp.ThreeTenModule;
-
 import com.quasas.sports.gen.client.invoker.auth.ApiKeyAuth;
 import com.quasas.sports.gen.client.invoker.auth.Authentication;
 import com.quasas.sports.gen.client.invoker.auth.HttpBasicAuth;
@@ -362,7 +359,7 @@ public class ApiClient {
 	 */
 	public ApiClient setDateFormat(DateFormat dateFormat) {
 		this.dateFormat = dateFormat;
-		for (HttpMessageConverter converter : restTemplate.getMessageConverters()) {
+		for (HttpMessageConverter<?> converter : restTemplate.getMessageConverters()) {
 			if (converter instanceof AbstractJackson2HttpMessageConverter) {
 				ObjectMapper mapper = ((AbstractJackson2HttpMessageConverter) converter).getObjectMapper();
 				mapper.setDateFormat(dateFormat);
@@ -632,7 +629,7 @@ public class ApiClient {
 	 */
 	protected RestTemplate buildRestTemplate() {
 		RestTemplate restTemplate = new RestTemplate();
-		for (HttpMessageConverter converter : restTemplate.getMessageConverters()) {
+		for (HttpMessageConverter<?> converter : restTemplate.getMessageConverters()) {
 			if (converter instanceof AbstractJackson2HttpMessageConverter) {
 				ObjectMapper mapper = ((AbstractJackson2HttpMessageConverter) converter).getObjectMapper();
 				ThreeTenModule module = new ThreeTenModule();

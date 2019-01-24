@@ -13,19 +13,17 @@
 
 package com.quasas.sports.gen.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.quasas.sports.gen.client.model.SummaryAthlete;
-import com.quasas.sports.gen.client.model.SummaryClub;
-import com.quasas.sports.gen.client.model.SummaryGear;
-import io.swagger.annotations.ApiModel;
-import io.swagger.annotations.ApiModelProperty;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
+
 import org.threeten.bp.OffsetDateTime;
+
+import com.fasterxml.jackson.annotation.JsonCreator;
+import com.fasterxml.jackson.annotation.JsonProperty;
+import com.fasterxml.jackson.annotation.JsonValue;
+
+import io.swagger.annotations.ApiModelProperty;
 
 /**
  * DetailedAthlete

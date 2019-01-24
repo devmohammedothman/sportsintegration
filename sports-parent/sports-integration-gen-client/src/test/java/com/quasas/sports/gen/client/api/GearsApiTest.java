@@ -13,15 +13,10 @@
 
 package com.quasas.sports.gen.client.api;
 
-import com.quasas.sports.gen.client.model.DetailedGear;
-import com.quasas.sports.gen.client.model.Fault;
-import org.junit.Test;
 import org.junit.Ignore;
+import org.junit.Test;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import com.quasas.sports.gen.client.model.DetailedGear;
 
 /**
  * API tests for GearsApi

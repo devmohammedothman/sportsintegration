@@ -10,58 +10,60 @@
  * Do not edit the class manually.
  */
 
-
 package com.quasas.sports.gen.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import io.swagger.annotations.ApiModel;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
+
+import io.swagger.annotations.ApiModel;
 
 /**
- * A pair of latitude/longitude coordinates, represented as an array of 2 floating point numbers.
+ * A pair of latitude/longitude coordinates, represented as an array of 2
+ * floating point numbers.
  */
 @ApiModel(description = "A pair of latitude/longitude coordinates, represented as an array of 2 floating point numbers.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-20T18:02:14.787+02:00")
 public class LatLng extends ArrayList<Float> {
 
-  @Override
-  public boolean equals(java.lang.Object o) {
-    if (this == o) {
-      return true;
-    }
-    if (o == null || getClass() != o.getClass()) {
-      return false;
-    }
-    return super.equals(o);
-  }
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = 4269803175194704542L;
 
-  @Override
-  public int hashCode() {
-    return Objects.hash(super.hashCode());
-  }
+	@Override
+	public boolean equals(java.lang.Object o) {
+		if (this == o) {
+			return true;
+		}
+		if (o == null || getClass() != o.getClass()) {
+			return false;
+		}
+		return super.equals(o);
+	}
 
+	@Override
+	public int hashCode() {
+		return Objects.hash(super.hashCode());
+	}
 
-  @Override
-  public String toString() {
-    StringBuilder sb = new StringBuilder();
-    sb.append("class LatLng {\n");
-    sb.append("    ").append(toIndentedString(super.toString())).append("\n");
-    sb.append("}");
-    return sb.toString();
-  }
+	@Override
+	public String toString() {
+		StringBuilder sb = new StringBuilder();
+		sb.append("class LatLng {\n");
+		sb.append("    ").append(toIndentedString(super.toString())).append("\n");
+		sb.append("}");
+		return sb.toString();
+	}
 
-  /**
-   * Convert the given object to string with each line indented by 4 spaces
-   * (except the first line).
-   */
-  private String toIndentedString(java.lang.Object o) {
-    if (o == null) {
-      return "null";
-    }
-    return o.toString().replace("\n", "\n    ");
-  }
+	/**
+	 * Convert the given object to string with each line indented by 4 spaces
+	 * (except the first line).
+	 */
+	private String toIndentedString(java.lang.Object o) {
+		if (o == null) {
+			return "null";
+		}
+		return o.toString().replace("\n", "\n    ");
+	}
 
 }
-

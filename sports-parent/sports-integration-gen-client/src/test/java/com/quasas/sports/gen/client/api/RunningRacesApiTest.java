@@ -13,15 +13,12 @@
 
 package com.quasas.sports.gen.client.api;
 
-import com.quasas.sports.gen.client.model.Fault;
-import com.quasas.sports.gen.client.model.RunningRace;
-import org.junit.Test;
-import org.junit.Ignore;
-
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
+
+import org.junit.Ignore;
+import org.junit.Test;
+
+import com.quasas.sports.gen.client.model.RunningRace;
 
 /**
  * API tests for RunningRacesApi

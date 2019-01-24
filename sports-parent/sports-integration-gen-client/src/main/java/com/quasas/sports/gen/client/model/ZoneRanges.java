@@ -13,11 +13,8 @@
 
 package com.quasas.sports.gen.client.model;
 
-import java.util.Objects;
-import java.util.Arrays;
-import com.quasas.sports.gen.client.model.ZoneRange;
 import java.util.ArrayList;
-import java.util.List;
+import java.util.Objects;
 
 /**
  * ZoneRanges
@@ -25,7 +22,12 @@ import java.util.List;
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-20T18:02:14.787+02:00")
 public class ZoneRanges extends ArrayList<ZoneRange> {
 
-  @Override
+  /**
+	 * 
+	 */
+	private static final long serialVersionUID = 8544748582715351684L;
+
+@Override
   public boolean equals(java.lang.Object o) {
     if (this == o) {
       return true;

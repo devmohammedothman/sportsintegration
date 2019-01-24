@@ -1,30 +1,26 @@
 package com.quasas.sports.gen.client.api;
 
-import com.quasas.sports.gen.client.invoker.ApiClient;
-
-import com.quasas.sports.gen.client.model.ActivityStats;
-import com.quasas.sports.gen.client.model.DetailedAthlete;
-import com.quasas.sports.gen.client.model.Fault;
-import com.quasas.sports.gen.client.model.Zones;
-
-import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
-import org.springframework.util.LinkedMultiValueMap;
-import org.springframework.util.MultiValueMap;
-import org.springframework.web.client.RestClientException;
-import org.springframework.web.client.HttpClientErrorException;
-import org.springframework.web.util.UriComponentsBuilder;
 import org.springframework.core.ParameterizedTypeReference;
-import org.springframework.core.io.FileSystemResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
+import org.springframework.stereotype.Component;
+import org.springframework.util.LinkedMultiValueMap;
+import org.springframework.util.MultiValueMap;
+import org.springframework.web.client.HttpClientErrorException;
+import org.springframework.web.client.RestClientException;
+import org.springframework.web.util.UriComponentsBuilder;
+
+import com.quasas.sports.gen.client.invoker.ApiClient;
+import com.quasas.sports.gen.client.model.ActivityStats;
+import com.quasas.sports.gen.client.model.DetailedAthlete;
+import com.quasas.sports.gen.client.model.Zones;
 
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-01-20T18:02:14.787+02:00")
 @Component("com.quasas.sports.gen.client.api.AthletesApi")

@@ -14,22 +14,9 @@
 package com.quasas.sports.gen.client.model;
 
 import java.util.Objects;
-import java.util.Arrays;
+
 import com.fasterxml.jackson.annotation.JsonProperty;
-import com.fasterxml.jackson.annotation.JsonCreator;
-import com.fasterxml.jackson.annotation.JsonValue;
-import com.quasas.sports.gen.client.model.AltitudeStream;
-import com.quasas.sports.gen.client.model.CadenceStream;
-import com.quasas.sports.gen.client.model.DistanceStream;
-import com.quasas.sports.gen.client.model.HeartrateStream;
-import com.quasas.sports.gen.client.model.LatLngStream;
-import com.quasas.sports.gen.client.model.MovingStream;
-import com.quasas.sports.gen.client.model.PowerStream;
-import com.quasas.sports.gen.client.model.SmoothGradeStream;
-import com.quasas.sports.gen.client.model.SmoothVelocityStream;
-import com.quasas.sports.gen.client.model.TemperatureStream;
-import com.quasas.sports.gen.client.model.TimeStream;
-import io.swagger.annotations.ApiModel;
+
 import io.swagger.annotations.ApiModelProperty;
 
 /**
