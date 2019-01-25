@@ -20,6 +20,7 @@
 	<modules>
 		<module>sports-integration</module>
 		<module>sports-integration-gen-client</module>
+		<module>sports-integration-simple-client</module>
 	</modules>
 
 	<!-- Common Dependenciec between all project modules -->
@@ -37,12 +38,6 @@
 					<artifactId>spring-boot-starter-logging</artifactId>
 				</exclusion>
 			</exclusions>
-		</dependency>
-
-		<dependency>
-			<groupId>org.springframework.boot</groupId>
-			<artifactId>spring-boot-starter-data-jpa</artifactId>
-			<version>${spring.version}</version>
 		</dependency>
 
 		<!-- test dependencies -->
