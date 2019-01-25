@@ -22,6 +22,7 @@ import com.quasas.sports.gen.client.model.DetailedGear;
  * API tests for GearsApi
  */
 @Ignore
+@SuppressWarnings("unused")
 public class GearsApiTest {
 
     private final GearsApi api = new GearsApi();

@@ -24,6 +24,7 @@ import com.quasas.sports.gen.client.model.RunningRace;
  * API tests for RunningRacesApi
  */
 @Ignore
+@SuppressWarnings("unused")
 public class RunningRacesApiTest {
 
     private final RunningRacesApi api = new RunningRacesApi();

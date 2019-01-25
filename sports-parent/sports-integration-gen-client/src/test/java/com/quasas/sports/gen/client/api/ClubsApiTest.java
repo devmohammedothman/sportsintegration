@@ -27,6 +27,7 @@ import com.quasas.sports.gen.client.model.SummaryClub;
  * API tests for ClubsApi
  */
 @Ignore
+@SuppressWarnings("unused")
 public class ClubsApiTest {
 
     private final ClubsApi api = new ClubsApi();

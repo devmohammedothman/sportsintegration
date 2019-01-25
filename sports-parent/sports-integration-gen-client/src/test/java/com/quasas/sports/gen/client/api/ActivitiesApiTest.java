@@ -9,7 +9,6 @@ import java.util.List;
 
 import org.junit.Ignore;
 import org.junit.Test;
-import org.junit.jupiter.api.BeforeEach;
 
 import com.quasas.sports.gen.client.invoker.ApiClient;
 import com.quasas.sports.gen.client.model.ActivityZone;
@@ -23,7 +22,6 @@ import com.quasas.sports.gen.client.model.UpdatableActivity;
 /**
  * API tests for ActivitiesApi
  */
-
 public class ActivitiesApiTest {
 
 	private ActivitiesApi api ;
@@ -37,6 +35,7 @@ public class ActivitiesApiTest {
 	 *
 	 * @throws ApiException if the Api call fails
 	 */
+	@SuppressWarnings("unused")
 	@Ignore
 	@Test
 	public void createActivityTest() {
@@ -64,6 +63,7 @@ public class ActivitiesApiTest {
 	 *
 	 * @throws ApiException if the Api call fails
 	 */
+	@Ignore
 	@Test
 	public void getActivityByIdTest() {
 		
@@ -90,6 +90,7 @@ public class ActivitiesApiTest {
 	 *
 	 * @throws ApiException if the Api call fails
 	 */
+	@SuppressWarnings("unused")
 	@Ignore
 	@Test
 	public void getCommentsByActivityIdTest() {
@@ -110,6 +111,7 @@ public class ActivitiesApiTest {
 	 *
 	 * @throws ApiException if the Api call fails
 	 */
+	@SuppressWarnings("unused")
 	@Ignore
 	@Test
 	public void getKudoersByActivityIdTest() {
@@ -130,6 +132,7 @@ public class ActivitiesApiTest {
 	 *
 	 * @throws ApiException if the Api call fails
 	 */
+	@SuppressWarnings("unused")
 	@Ignore
 	@Test
 	public void getLapsByActivityIdTest() {
@@ -148,6 +151,7 @@ public class ActivitiesApiTest {
 	 *
 	 * @throws ApiException if the Api call fails
 	 */
+	@Ignore
 	@Test
 	public void getLoggedInAthleteActivitiesTest() {
 		
@@ -177,6 +181,7 @@ public class ActivitiesApiTest {
 	 *
 	 * @throws ApiException if the Api call fails
 	 */
+	@SuppressWarnings("unused")
 	@Ignore
 	@Test
 	public void getZonesByActivityIdTest() {
@@ -195,6 +200,7 @@ public class ActivitiesApiTest {
 	 *
 	 * @throws ApiException if the Api call fails
 	 */
+	@SuppressWarnings("unused")
 	@Ignore
 	@Test
 	public void updateActivityByIdTest() {

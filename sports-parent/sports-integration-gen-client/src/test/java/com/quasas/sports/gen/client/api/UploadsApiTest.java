@@ -24,6 +24,7 @@ import com.quasas.sports.gen.client.model.Upload;
  * API tests for UploadsApi
  */
 @Ignore
+@SuppressWarnings("unused")
 public class UploadsApiTest {
 
     private final UploadsApi api = new UploadsApi();

@@ -24,6 +24,7 @@ import com.quasas.sports.gen.client.model.StreamSet;
  * API tests for StreamsApi
  */
 @Ignore
+@SuppressWarnings("unused")
 public class StreamsApiTest {
 
     private final StreamsApi api = new StreamsApi();

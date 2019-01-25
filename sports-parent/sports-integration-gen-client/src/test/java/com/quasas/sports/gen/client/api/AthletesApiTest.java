@@ -25,6 +25,7 @@ import com.quasas.sports.gen.client.model.Zones;
  * API tests for AthletesApi
  */
 @Ignore
+@SuppressWarnings("unused")
 public class AthletesApiTest {
 
     private final AthletesApi api = new AthletesApi();

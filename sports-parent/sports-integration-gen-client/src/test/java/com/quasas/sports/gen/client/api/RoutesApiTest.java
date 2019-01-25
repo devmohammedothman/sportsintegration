@@ -24,6 +24,7 @@ import com.quasas.sports.gen.client.model.Route;
  * API tests for RoutesApi
  */
 @Ignore
+@SuppressWarnings("unused")
 public class RoutesApiTest {
 
     private final RoutesApi api = new RoutesApi();

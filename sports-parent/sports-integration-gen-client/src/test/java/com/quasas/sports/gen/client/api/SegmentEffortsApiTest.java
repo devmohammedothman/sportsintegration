@@ -24,6 +24,7 @@ import com.quasas.sports.gen.client.model.DetailedSegmentEffort;
  * API tests for SegmentEffortsApi
  */
 @Ignore
+@SuppressWarnings("unused")
 public class SegmentEffortsApiTest {
 
     private final SegmentEffortsApi api = new SegmentEffortsApi();

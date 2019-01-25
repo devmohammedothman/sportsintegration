@@ -27,6 +27,7 @@ import com.quasas.sports.gen.client.model.SummarySegment;
  * API tests for SegmentsApi
  */
 @Ignore
+@SuppressWarnings("unused")
 public class SegmentsApiTest {
 
     private final SegmentsApi api = new SegmentsApi();
