@@ -27,12 +27,15 @@ public class BasicServiceImpl<D, E> {
 	@SuppressWarnings("unchecked")
 	public D convertToAPISource(E entity, D source) throws SportsApplicationException {
 		try {
+			
+			logger.info("Converting Entity with Source API :: Execution Time - {}  :: Source Object - {}",
+					dateTimeFormatter.format(LocalDateTime.now()), source);
 
 			D convertedDtoObj = (D) modelMapper.map(entity, source.getClass());
 
 			// Log converted objects
-			logger.info("Converting Entity with Source API Done :: Execution Time - {} ::  Source Object - {}",
-					dateTimeFormatter.format(LocalDateTime.now()), source);
+			logger.info("Converting Entity with Source API Done :: Execution Time - {} ::  Converted Object - {}",
+					dateTimeFormatter.format(LocalDateTime.now()), convertedDtoObj);
 
 			return convertedDtoObj;
 		} catch (Exception ex) {
@@ -48,14 +51,14 @@ public class BasicServiceImpl<D, E> {
 		try {
 
 			// log source object to be converted
-			logger.info("Converting Entity with Source API Done :: Execution Time - {}  :: Source Object - {}",
+			logger.info("Converting Entity with Source API :: Execution Time - {}  :: Source Object - {}",
 					dateTimeFormatter.format(LocalDateTime.now()), source);
 
 			E convertedEntity = (E) modelMapper.map(source, entity.getClass());
 
 			// Log converted objects
 			logger.info("Converting Entity with Source API Done :: Execution Time - {}  :: Converted Object - {}",
-					dateTimeFormatter.format(LocalDateTime.now()), entity);
+					dateTimeFormatter.format(LocalDateTime.now()), convertedEntity);
 
 			return convertedEntity;
 		} catch (Exception ex) {
@@ -70,10 +73,10 @@ public class BasicServiceImpl<D, E> {
 		try {
 
 			// log source object to be converted
-			logger.info("Converting Entity with Source API Done :: Execution Time - {}  :: Source Object - {}",
+			logger.info("Converting Entity with Source API :: Execution Time - {}  :: Source Object - {}",
 					dateTimeFormatter.format(LocalDateTime.now()), dActivity);
 
-			SummaryActivity convertedEntity = (SummaryActivity) modelMapper.map(dActivity, sumActivity.getClass());
+			SummaryActivity convertedEntity = (SummaryActivity) modelMapper.map(dActivity, SummaryActivity.class);
 
 			//Log converted objects
 			logger.info("Converting Entity with Source API Done :: Execution Time - {}  :: Converted Object :: {}",

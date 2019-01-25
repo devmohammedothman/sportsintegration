@@ -51,6 +51,13 @@ public class ActivityServiceImpl extends BasicServiceImpl<SummaryActivity, Activ
 			Activity resultActivityObj = new Activity();
 			resultActivityObj = convertToEntity(resultActivityObj, convertedSummaryActivity);
 			
+			//check if resultActivity exist in DB else will be saved firstly
+			Activity foundActivityObj = activityDao.findBySourceId(resultActivityObj.getSourceId());
+			
+			if(foundActivityObj == null)
+				activityDao.save(resultActivityObj);
+			
+			resultActivityObj.setIdentifierKey(foundActivityObj.getIdentifierKey());
 			
 			return resultActivityObj;
 		} catch (RestClientException rsEx) {

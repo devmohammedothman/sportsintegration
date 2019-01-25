@@ -22,9 +22,9 @@
 		<module>sports-integration-gen-client</module>
 	</modules>
 
-<!-- Common Dependenciec between all project modules -->
+	<!-- Common Dependenciec between all project modules -->
 	<dependencies>
-		
+
 		<!-- HTTP client: Spring RestTemplate -->
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
@@ -52,7 +52,15 @@
 			<scope>test</scope>
 			<version>${spring.version}</version>
 		</dependency>
-		
+		<!-- https://mvnrepository.com/artifact/org.junit.jupiter/junit-jupiter-engine -->
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.3.2</version>
+			<scope>test</scope>
+		</dependency>
+
+
 		<!-- Log4j2 Support -->
 		<dependency>
 			<groupId>org.apache.logging.log4j</groupId>
@@ -64,7 +72,7 @@
 			<artifactId>log4j-core</artifactId>
 			<version>2.11.1</version>
 		</dependency>
-		
+
 	</dependencies>
 
 </project>

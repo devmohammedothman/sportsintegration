@@ -1,6 +1,7 @@
 package com.quasas.sports.boot.restcontroller;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -31,9 +32,10 @@ public class SportController {
 		return "Hello Project Started";
 	}
 	
-	@GetMapping("/getActivityById/{id}")
+	@GetMapping(path="/getActivityById/{id}" , produces= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseDTO> getActivityById(@PathVariable("id") Long id) throws SportsApplicationException 
 	{
+		//call activity service that wrap activity api method to return Activity entity 
 		Activity resultActivityObj = activityService.getActivityById(id, Boolean.FALSE);
 						
 		ResponseDTO responseDto = null;
