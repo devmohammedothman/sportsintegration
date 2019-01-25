@@ -1,5 +1,7 @@
 package com.quasas.sports.boot.dao.impl;
 
+import java.util.List;
+
 import javax.persistence.EntityManager;
 import javax.persistence.Query;
 
@@ -69,6 +71,26 @@ public class ActivityDaoImpl implements ActivityDao {
 			return foundActivity;
 		}
 
+		catch (Exception ex) {
+			throw new SportsApplicationException(ex.getMessage());
+		}
+	}
+
+	@SuppressWarnings("unchecked")
+	@Override
+	public List<Activity> findAll() throws SportsApplicationException {
+		try {
+			
+			List<Activity> resultList ;
+			
+			//Create Query
+			Query q = entityManager.createQuery("From Activity");
+			
+			//execute query and get result list
+			resultList = q.getResultList();
+			
+			return resultList;
+		}
 		catch (Exception ex) {
 			throw new SportsApplicationException(ex.getMessage());
 		}

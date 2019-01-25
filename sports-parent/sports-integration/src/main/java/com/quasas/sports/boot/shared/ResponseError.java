@@ -2,8 +2,6 @@ package com.quasas.sports.boot.shared;
 
 import java.io.Serializable;
 
-import com.quasas.sports.boot.exception.SportsApplicationException;
-
 public class ResponseError implements Serializable {
 
 	/**

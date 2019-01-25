@@ -13,4 +13,6 @@ public interface ActivityService {
 	public List<Activity> getLoggedInAthleteActivities() throws SportsApplicationException;
 	
 	public Activity save(Activity activityObj) throws SportsApplicationException;
+	
+	public List<Activity> getAllPersistentActivities() throws SportsApplicationException;
 }

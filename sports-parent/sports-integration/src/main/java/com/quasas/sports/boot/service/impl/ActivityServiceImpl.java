@@ -28,11 +28,9 @@ public class ActivityServiceImpl extends BasicServiceImpl<SummaryActivity, Activ
 
 	@Autowired
 	private ActivityDao activityDao;
-	
-	
+
 	@PostConstruct
-	public void init()
-	{
+	public void init() {
 		configureMapperLocally();
 	}
 
@@ -42,23 +40,23 @@ public class ActivityServiceImpl extends BasicServiceImpl<SummaryActivity, Activ
 		try {
 			// get activity details from API
 			DetailedActivity detailedActivityObj = activityApi.getActivityById(id, includeAllEfforts);
-			
-			//convert from Detailed Activity to Summary Activity
+
+			// convert from Detailed Activity to Summary Activity
 			SummaryActivity convertedSummaryActivity = new SummaryActivity();
 			convertedSummaryActivity = convertFromDetailedToSummary(convertedSummaryActivity, detailedActivityObj);
 
-			//then convert Summary activity to Entity Activity
+			// then convert Summary activity to Entity Activity
 			Activity resultActivityObj = new Activity();
 			resultActivityObj = convertToEntity(resultActivityObj, convertedSummaryActivity);
-			
-			//check if resultActivity exist in DB else will be saved firstly
+
+			// check if resultActivity exist in DB else will be saved firstly
 			Activity foundActivityObj = activityDao.findBySourceId(resultActivityObj.getSourceId());
-			
-			if(foundActivityObj == null)
+
+			if (foundActivityObj == null)
 				activityDao.save(resultActivityObj);
-			
+
 			resultActivityObj.setIdentifierKey(foundActivityObj.getIdentifierKey());
-			
+
 			return resultActivityObj;
 		} catch (RestClientException rsEx) {
 			throw new SportsApplicationException(
@@ -73,34 +71,32 @@ public class ActivityServiceImpl extends BasicServiceImpl<SummaryActivity, Activ
 	public List<Activity> getLoggedInAthleteActivities() throws SportsApplicationException {
 
 		try {
-			
-			// call get Logged In AthleteActivites from Client Api
-			List<SummaryActivity> sourceActivityList = activityApi.getLoggedInAthleteActivities(null,null,null,null);
 
-			//Define result Activity List
+			// call get Logged In AthleteActivites from Client Api
+			List<SummaryActivity> sourceActivityList = activityApi.getLoggedInAthleteActivities(null, null, null, null);
+
+			// Define result Activity List
 			List<Activity> resultActivityList = new ArrayList<Activity>();
-			//convert API source Activity Object to Entity Activity
-			if(sourceActivityList != null && sourceActivityList.size() > 0)
-			{
-				for(SummaryActivity item : sourceActivityList)
-				{
+			// convert API source Activity Object to Entity Activity
+			if (sourceActivityList != null && sourceActivityList.size() > 0) {
+				for (SummaryActivity item : sourceActivityList) {
 					Activity convertedActivity = new Activity();
-					convertedActivity =  convertToEntity(convertedActivity, item);
-					
-					//add converted Activity object to result activity list
+					convertedActivity = convertToEntity(convertedActivity, item);
+
+					// add converted Activity object to result activity list
 					resultActivityList.add(convertedActivity);
 				}
 			}
-			
-			
+
 			return resultActivityList;
-			
+
 		} catch (RestClientException ex) {
 			throw new SportsApplicationException(
 					"Rest Exception While Calling Service to get Logged In Athlete Activities >> " + ex.getMessage());
 		} catch (Exception ex) {
 			throw new SportsApplicationException(
-					"General Exception While Calling Service to get Logged In Athlete Activities >> " + ex.getMessage());
+					"General Exception While Calling Service to get Logged In Athlete Activities >> "
+							+ ex.getMessage());
 		}
 
 	}
@@ -114,14 +110,24 @@ public class ActivityServiceImpl extends BasicServiceImpl<SummaryActivity, Activ
 					"General Exception While Adding Activity Object to Database >> " + ex.getMessage());
 		}
 	}
-		
+
 	protected void configureMapperLocally() {
-		modelMapper.addMappings(new PropertyMap<SummaryActivity,Activity >() {
+		modelMapper.addMappings(new PropertyMap<SummaryActivity, Activity>() {
 			protected void configure() {
 				map().setSourceId(source.getId());
 				map().setAthlete(source.getAthlete().getId());
 			}
 		});
+	}
+
+	@Override
+	public List<Activity> getAllPersistentActivities() throws SportsApplicationException {
+		try {
+			return activityDao.findAll();
+		} catch (Exception ex) {
+			throw new SportsApplicationException(
+					"General Exception While Get All Activity List From Database >> " + ex.getMessage());
+		}
 	}
 
 }

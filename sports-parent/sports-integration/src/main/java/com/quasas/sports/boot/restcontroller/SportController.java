@@ -1,5 +1,7 @@
 package com.quasas.sports.boot.restcontroller;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
@@ -16,7 +18,7 @@ import com.quasas.sports.boot.shared.RestProvider;
 import com.quasas.sports.boot.shared.StatusCode;
 
 @RestController
-@RequestMapping("api/activity")
+@RequestMapping("/api")
 public class SportController {
 	
 	@Autowired
@@ -29,10 +31,10 @@ public class SportController {
 	@GetMapping("/hello")
 	public String helloController()
 	{
-		return "Hello Project Started";
+		return "First Controller End point";
 	}
 	
-	@GetMapping(path="/getActivityById/{id}" , produces= MediaType.APPLICATION_JSON_VALUE)
+	@GetMapping(path="/activity/{id}" , produces= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseDTO> getActivityById(@PathVariable("id") Long id) throws SportsApplicationException 
 	{
 		//call activity service that wrap activity api method to return Activity entity 
@@ -41,6 +43,19 @@ public class SportController {
 		ResponseDTO responseDto = null;
 		if(resultActivityObj !=null)
 			responseDto = new ResponseDTO(StatusCode.SUCCESSFULL, "Data Retreived Successfully",resultActivityObj );
+		else
+			responseDto = new ResponseDTO(StatusCode.NOTFOUND, "Bad Request", null);
+		return restProvider.addObj(responseDto);
+	}
+	
+	@GetMapping(path = "/activity",produces = MediaType.APPLICATION_JSON_VALUE)
+	public ResponseEntity<ResponseDTO> getAllActivities() throws SportsApplicationException
+	{
+		List<Activity> resultList = activityService.getAllPersistentActivities();
+		
+		ResponseDTO responseDto = null;
+		if(resultList !=null)
+			responseDto = new ResponseDTO(StatusCode.SUCCESSFULL, "Data Retreived Successfully",resultList );
 		else
 			responseDto = new ResponseDTO(StatusCode.NOTFOUND, "Bad Request", null);
 		return restProvider.addObj(responseDto);
