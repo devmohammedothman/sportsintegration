@@ -4,9 +4,17 @@ This project build to integrate with Strava API or other similr Sports API to pr
 
 Project Architecture:
 Project build as Maven Multi Module project with child modules as follows
+
 sports-parent :Parent Module project
 
-sports-integration : Spring Boot project that provide Service Implementation,Dao Implememntation, Rest Controller, Schedueled Tasks for Integration, Entity Classes that map database tables and other Util Classes that help in development phase.
+sports-integration : Spring Boot project that provide Service Implementation,Dao Implememntation, Rest Controller, Schedueled Tasks for Integration, Entity Classes that map database tables and other Util Classes that help in development phase such as 
+ResponeDTO
+ResponseError
+RestProvider
+RestUtils
+SportsApplicationException
+AppLoggingAspect using spring AOP for logging
+General Exception Handling with Controller Advice
 
 sports-integration-gen-client: Spring Boot project that built with swagger code gen tool to provide all api client related modules like (invoke api,model api classes)
 
@@ -54,3 +62,7 @@ Change path of Log File according to your file system in Log4j2.xml
 Inside project spring-parent run mvn clean install
 
 Inside project spring-integration run mvn spring-boot:run
+
+Hit this URL from your browser or post man 
+http://localhost:8080/sports/api/activity to see current activities in DB
+http://localhost:8080/sports/api/activity/2084377508 to get specific activity with id in Strava API (Source ID)
