@@ -69,3 +69,5 @@ Inside project spring-integration run mvn spring-boot:run
 Hit this URL from your browser or post man 
 http://localhost:8080/sports/api/activity to see current activities in DB
 http://localhost:8080/sports/api/activity/2084377508 to get specific activity with id in Strava API (Source ID)
+
+http://localhost:4200 for Angular Front End
