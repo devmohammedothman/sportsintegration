@@ -1,13 +1,14 @@
-# sports Integration Application
+# Sports Integration Application
 
 This project build to integrate with Strava API or other similr Sports API to provide integration from Client API and save this data into database.
 
-Project Architecture:
+# Project Architecture:
 Project build as Maven Multi Module project with child modules as follows
 
-sports-parent :Parent Module project
+# sports-parent :Parent Module project
 
-sports-integration : Spring Boot project that provide Service Implementation,Dao Implememntation, Rest Controller, Schedueled Tasks for Integration, Entity Classes that map database tables and other Util Classes that help in development phase such as 
+# sports-integration : 
+Spring Boot project that provide Service Implementation,Dao Implememntation, Rest Controller, Schedueled Tasks for Integration, Entity Classes that map database tables and other Util Classes that help in development phase such as 
 ResponeDTO,
 ResponseError,
 RestProvider,
@@ -16,7 +17,8 @@ SportsApplicationException,
 AppLoggingAspect using spring AOP for logging,
 and General Exception Handling with Controller Advice
 
-sports-integration-gen-client: Spring Boot project that built with swagger code gen tool to provide all api client related modules like (invoke api,model api classes)
+# sports-integration-gen-client:
+Spring Boot project that built with swagger code gen tool to provide all api client related modules like (invoke api,model api classes)
 
 this client generated based on rest template using this command :
 
@@ -32,11 +34,12 @@ java -jar swagger-codegen-cli-2.4.1.jar generate
   --library resttemplate 
   -o sports-integration-gen-client
 
-sports-integration-simple-client: sprig Boot project that build as a simple client api that was used to communicate with API and generate access token , but later on i decided to use generated client to benefit from its wide range classes and i had to customize in this generated client to be able to get access token based on properties config file.
+# sports-integration-simple-client: 
+sprig Boot project that build as a simple client api that was used to communicate with API and generate access token , but later on i decided to use generated client to benefit from its wide range classes and i had to customize in this generated client to be able to get access token based on properties config file.
 
 sports-angular-interface: Simple Angular 7 project which represent simple user interface of what is currently exist in Database.
 
-How TO Run:
+# How TO Run:
 Since Strava API doesn't support Client Credentials of oauth flow so you have to get authorization code firstly by your self 
 follow below steps:
 
@@ -51,7 +54,7 @@ for example : "http://localhost:8080/?state=&code=87e5dac0a2d7bb84ef844bc25a545a
 
 Now you can get this code and your client id , client secret and put in application.properties in spring-integration project
 
-Make sure of:
+# Make sure of:
 
 there is dbscript.sql file that need to be run on your MYsql database which will create table for saving activities.
 
