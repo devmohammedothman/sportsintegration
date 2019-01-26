@@ -1,0 +1,33 @@
+<!--The content below is only a placeholder and can be replaced.-->
+<div style="text-align:center">
+    <h1>
+        {{ title }}
+    </h1>
+</div>
+<mat-table #table [dataSource]="dataSource">
+
+    <ng-container matColumnDef="ID">
+        <mat-header-cell *matHeaderCellDef>ID</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.identifierKey}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Name">
+        <mat-header-cell *matHeaderCellDef>name</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.name}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="Distance">
+        <mat-header-cell *matHeaderCellDef>Distance</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.distance}}</mat-cell>
+    </ng-container>
+
+    <ng-container matColumnDef="StartDate">
+        <mat-header-cell *matHeaderCellDef>Start Date</mat-header-cell>
+        <mat-cell *matCellDef="let element">{{element.startDateLocal}}</mat-cell>
+    </ng-container>
+
+
+
+    <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>
+    <mat-row *matRowDef="let row; columns: displayedColumns;"></mat-row>
+</mat-table>
