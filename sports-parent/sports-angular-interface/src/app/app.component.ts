@@ -15,7 +15,7 @@ export class AppComponent {
 
   constructor(private apiService:ActivityService){}
 
-  //9c6a2b374e7f901a9184360536a807b55acdce9c
+  
   ngOnInit() {
     this.apiService.getCurrentActivities().subscribe(
       data => {
