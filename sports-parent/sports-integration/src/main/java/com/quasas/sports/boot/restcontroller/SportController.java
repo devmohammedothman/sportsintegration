@@ -5,6 +5,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -39,6 +40,7 @@ public class SportController {
 	 * @return Customized Response DTO object that will has custom status message and actual data
 	 * @throws SportsApplicationException Custom Application Exception
 	 */
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(path="/activity/{id}" , produces= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseDTO> getActivityById(@PathVariable("id") Long id) throws SportsApplicationException 
 	{
@@ -59,6 +61,7 @@ public class SportController {
 	 * @return List of Activity Entity
 	 * @throws SportsApplicationException Custom Application Exception
 	 */
+	@CrossOrigin(origins = "http://localhost:4200")
 	@GetMapping(path = "/activity",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseDTO> getAllActivities() throws SportsApplicationException
 	{
