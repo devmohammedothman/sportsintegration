@@ -8,13 +8,13 @@ Project build as Maven Multi Module project with child modules as follows
 sports-parent :Parent Module project
 
 sports-integration : Spring Boot project that provide Service Implementation,Dao Implememntation, Rest Controller, Schedueled Tasks for Integration, Entity Classes that map database tables and other Util Classes that help in development phase such as 
-ResponeDTO
-ResponseError
-RestProvider
-RestUtils
-SportsApplicationException
-AppLoggingAspect using spring AOP for logging
-General Exception Handling with Controller Advice
+ResponeDTO,
+ResponseError,
+RestProvider,
+RestUtils,
+SportsApplicationException,
+AppLoggingAspect using spring AOP for logging,
+and General Exception Handling with Controller Advice
 
 sports-integration-gen-client: Spring Boot project that built with swagger code gen tool to provide all api client related modules like (invoke api,model api classes)
 
