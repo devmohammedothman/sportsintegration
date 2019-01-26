@@ -2,6 +2,11 @@ package com.quasas.sports.boot.shared;
 
 import java.io.Serializable;
 
+/**
+ * Helper Class that represent Response Status
+ * @author <a href="mailto:dev.mohammed.othman@gmail.com">Mohammed Othman</a>
+ *
+ */
 public class ResponseStatusDTO implements Serializable {
 
 	/**
@@ -16,6 +21,11 @@ public class ResponseStatusDTO implements Serializable {
 	
 	private String customMessage;
 	
+	/**
+	 * Constructor
+	 * @param customCode code 
+	 * @param customMessage message
+ 	 */
 	public ResponseStatusDTO(StatusCode customCode,String customMessage)
 	{
 		

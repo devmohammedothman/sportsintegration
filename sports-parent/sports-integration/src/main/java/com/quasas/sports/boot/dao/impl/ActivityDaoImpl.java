@@ -12,12 +12,22 @@ import com.quasas.sports.boot.dao.ActivityDao;
 import com.quasas.sports.boot.entity.Activity;
 import com.quasas.sports.boot.exception.SportsApplicationException;
 
+/**
+ * Activity DAO Implementation that support basic CRUD Operation on Database
+ * Use Spring JPA entity Manager for database Operations
+ * @author <a href="mailto:dev.mohammed.othman@gmail.com">Mohammed Othman</a>
+ *
+ */
+
 @Repository
 public class ActivityDaoImpl implements ActivityDao {
 
 	@Autowired
 	private EntityManager entityManager;
 
+	/**
+	 * Save New Activity or Update Existing Activity Object
+	 */
 	@Override
 	public Activity save(Activity activityObj) throws SportsApplicationException {
 
@@ -39,6 +49,9 @@ public class ActivityDaoImpl implements ActivityDao {
 		}
 	}
 
+	/**
+	 * Find Activity by Primary key column
+	 */
 	@Override
 	public Activity findById(int id) throws SportsApplicationException {
 
@@ -54,6 +67,9 @@ public class ActivityDaoImpl implements ActivityDao {
 		}
 	}
 
+	/**
+	 * Find Activity in Database by Source id which is Id of Activity at Strava Client API
+	 */
 	@Override
 	public Activity findBySourceId(Long sourceId) throws SportsApplicationException {
 		try {
@@ -76,11 +92,14 @@ public class ActivityDaoImpl implements ActivityDao {
 		}
 	}
 
+	/**
+	 * Get All current activities in Database
+	 */
 	@SuppressWarnings("unchecked")
 	@Override
 	public List<Activity> findAll() throws SportsApplicationException {
 		try {
-			
+			//define returned result List
 			List<Activity> resultList ;
 			
 			//Create Query

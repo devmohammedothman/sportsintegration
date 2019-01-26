@@ -2,10 +2,15 @@ package com.quasas.sports.boot.shared;
 
 import java.io.Serializable;
 
+/**
+ * Helper Class That represents Custom Response Error that will be used if exception happend as a Response
+ * @author <a href="mailto:dev.mohammed.othman@gmail.com">Mohammed Othman</a>
+ *
+ */
 public class ResponseError implements Serializable {
 
 	/**
-	 * 
+	 * Generated Serial ID
 	 */
 	private static final long serialVersionUID = -1946378664375691245L;
 
@@ -15,6 +20,12 @@ public class ResponseError implements Serializable {
 
 	private String customMessage;
 
+	/**
+	 * Constructor
+	 * @param customCode Status Code that represent status of Response
+	 * @param customMessage Custom Message
+	 * @param timeStamp time stamp
+	 */
 	public ResponseError(StatusCode customCode, String customMessage, long timeStamp) {
 		this.customCode = customCode.getValue();
 		this.customMessage = customMessage;

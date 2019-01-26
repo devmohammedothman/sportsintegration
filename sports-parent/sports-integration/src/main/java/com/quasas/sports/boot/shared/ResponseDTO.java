@@ -2,10 +2,15 @@ package com.quasas.sports.boot.shared;
 
 import java.io.Serializable;
 
+/**
+ * Helper Class That represents Custom Response DTO which will be used in Response for REST APIs
+ * @author <a href="mailto:dev.mohammed.othman@gmail.com">Mohammed Othman</a>
+ *
+ */
 public class ResponseDTO implements Serializable {
 
 	/**
-	 * 
+	 * Generated Serial ID
 	 */
 	private static final long serialVersionUID = -5428751645851374005L;
 	
@@ -13,6 +18,12 @@ public class ResponseDTO implements Serializable {
 	private ResponseStatusDTO status;
 	private Object data;
 	
+	/**
+	 * Constructor
+	 * @param customCode Status Code that represent status of Response
+	 * @param customMessage Custom Message 
+	 * @param data Actual Response Data
+	 */
 	public ResponseDTO(StatusCode customCode,String customMessage, Object data) {
 
 		this.status = new ResponseStatusDTO(customCode,customMessage);

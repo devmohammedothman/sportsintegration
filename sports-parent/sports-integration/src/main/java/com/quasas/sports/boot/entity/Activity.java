@@ -10,12 +10,19 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
+/**
+ * Entity Class that represnt Activity Table in Database
+ * Table Has it own identifier key which is different that Source identifier of Client API
+ * @author <a href="mailto:dev.mohammed.othman@gmail.com">Mohammed Othman</a>
+ *
+ */
+
 @Entity
 @Table(name = "detailed_activity")
 public class Activity implements Serializable {
 
 	/**
-	 * 
+	 * Generated Serial ID
 	 */
 	private static final long serialVersionUID = -5835794055008449952L;
 

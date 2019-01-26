@@ -104,6 +104,7 @@ public class ActivityServiceImpl extends BasicServiceImpl<SummaryActivity, Activ
 	@Override
 	public Activity save(Activity activityObj) throws SportsApplicationException {
 		try {
+			//call save method from DAO to save or update activity
 			return activityDao.save(activityObj);
 		} catch (Exception ex) {
 			throw new SportsApplicationException(
@@ -123,6 +124,7 @@ public class ActivityServiceImpl extends BasicServiceImpl<SummaryActivity, Activ
 	@Override
 	public List<Activity> getAllPersistentActivities() throws SportsApplicationException {
 		try {
+			//find all activities in DB
 			return activityDao.findAll();
 		} catch (Exception ex) {
 			throw new SportsApplicationException(

@@ -17,6 +17,12 @@ import com.quasas.sports.boot.shared.ResponseDTO;
 import com.quasas.sports.boot.shared.RestProvider;
 import com.quasas.sports.boot.shared.StatusCode;
 
+/**
+ * Restful Controller Class that define end points 
+ * @author <a href="mailto:dev.mohammed.othman@gmail.com">Mohammed Othman</a>
+ *
+ */
+
 @RestController
 @RequestMapping("/api")
 public class SportController {
@@ -27,19 +33,19 @@ public class SportController {
 	@Autowired
 	private ActivityService activityService;
 	
-	
-	@GetMapping("/hello")
-	public String helloController()
-	{
-		return "First Controller End point";
-	}
-	
+	/**
+	 * This end point will get activity by id
+	 * @param id source id of client api
+	 * @return Customized Response DTO object that will has custom status message and actual data
+	 * @throws SportsApplicationException Custom Application Exception
+	 */
 	@GetMapping(path="/activity/{id}" , produces= MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseDTO> getActivityById(@PathVariable("id") Long id) throws SportsApplicationException 
 	{
 		//call activity service that wrap activity api method to return Activity entity 
 		Activity resultActivityObj = activityService.getActivityById(id, Boolean.FALSE);
-						
+		
+		//Define Custom Response DTO object with custom status Message and actual data
 		ResponseDTO responseDto = null;
 		if(resultActivityObj !=null)
 			responseDto = new ResponseDTO(StatusCode.SUCCESSFULL, "Data Retreived Successfully",resultActivityObj );
@@ -48,12 +54,20 @@ public class SportController {
 		return restProvider.addObj(responseDto);
 	}
 	
+	/**
+	 * This end point will get all current activities in Data Base
+	 * @return List of Activity Entity
+	 * @throws SportsApplicationException Custom Application Exception
+	 */
 	@GetMapping(path = "/activity",produces = MediaType.APPLICATION_JSON_VALUE)
 	public ResponseEntity<ResponseDTO> getAllActivities() throws SportsApplicationException
 	{
 		List<Activity> resultList = activityService.getAllPersistentActivities();
 		
+		
 		ResponseDTO responseDto = null;
+		
+		//Define Custom Response DTO object with custom status Message and actual data
 		if(resultList !=null)
 			responseDto = new ResponseDTO(StatusCode.SUCCESSFULL, "Data Retreived Successfully",resultList );
 		else

@@ -14,6 +14,11 @@ import com.quasas.sports.boot.entity.Activity;
 import com.quasas.sports.boot.exception.SportsApplicationException;
 import com.quasas.sports.boot.service.ActivityService;
 import com.quasas.sports.gen.client.invoker.ApiClient;
+/**
+ * This class is the integration initializer class to start schedeuled tasks to integrate with client api
+ * @author <a href="mailto:dev.mohammed.othman@gmail.com">Mohammed Othman</a>
+ *
+ */
 
 @Component
 public class SportsAppIntegrateInitializer {
@@ -29,6 +34,11 @@ public class SportsAppIntegrateInitializer {
 	@Autowired
 	ActivityService activityService;
 
+	/**
+	 * Start Method to get current logged in Athlete activities 
+	 * List of return activities from client api will be parsed  then saved to Database
+	 * it can configured to change fixed delay and initial delay from properties file
+	 */
 	@Scheduled(fixedDelayString = "#{${strava.api.integration.delayTime}}", initialDelayString = "#{${strava.api.integration.initialTime}}")
 	public void scheduleCurrentAthleteActivities() {
 
@@ -61,6 +71,10 @@ public class SportsAppIntegrateInitializer {
 				dateTimeFormatter.format(LocalDateTime.now()));
 	}
 
+	/**
+	 * This Method scheduled  to refresh access token every 1 Hour
+	 * it can configured to change fixed delay and initial delay from properties file
+	 */
 	@Scheduled(fixedDelayString = "#{${strava.api.integration.refreshtoken.delayTime}}", initialDelayString = "#{${strava.api.integration.refreshtoken.initialTime}}")
 	public void scheduleRefreshToken() {
 

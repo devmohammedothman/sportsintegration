@@ -5,6 +5,12 @@ import java.util.List;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 
+/**
+ * This Class provided Generic implementation for Response Entity which will be returned to the user
+ * @author <a href="mailto:dev.mohammed.othman@gmail.com">Mohammed Othman</a>
+ *
+ * @param <T> It will inject any Response type 
+ */
 public class RestUtils<T> {
 	
 	public ResponseEntity<T> addObj(T t) {
@@ -20,7 +26,6 @@ public class RestUtils<T> {
 			return new ResponseEntity<T>(HttpStatus.NOT_FOUND);
 		}
 	}
-	
 	public ResponseEntity<T> getObj(T t) {
 		try {
 			if (t != null) {
