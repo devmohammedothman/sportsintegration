@@ -1,4 +1,4 @@
-package com.quasas.sports.boot.config;
+package com.quasas.sports.boot;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

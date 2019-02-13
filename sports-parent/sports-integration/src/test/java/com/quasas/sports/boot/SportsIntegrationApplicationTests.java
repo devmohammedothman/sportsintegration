@@ -1,4 +1,4 @@
-package com.quasas.sports.boot.config;
+package com.quasas.sports.boot;
 
 import org.junit.Test;
 import org.junit.runner.RunWith;
