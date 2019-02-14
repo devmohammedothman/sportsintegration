@@ -26,7 +26,7 @@ public interface ActivityDao {
 	 * @return Found Activity Object
 	 * @throws SportsApplicationException Custom Application Exception
 	 */
-	public Activity findById(int id) throws SportsApplicationException;
+	public Activity findById(Long id) throws SportsApplicationException;
 	
 	/**
 	 * Find Activity in Database by Source id which is Id of Activity at Strava Client API

@@ -53,7 +53,7 @@ public class ActivityDaoImpl implements ActivityDao {
 	 * Find Activity by Primary key column
 	 */
 	@Override
-	public Activity findById(int id) throws SportsApplicationException {
+	public Activity findById(Long id) throws SportsApplicationException {
 
 		try {
 
