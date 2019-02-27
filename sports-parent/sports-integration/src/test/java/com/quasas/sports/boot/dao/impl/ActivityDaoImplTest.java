@@ -21,7 +21,8 @@ import com.quasas.sports.boot.exception.SportsApplicationException;
 //To load spring application context
 //this is one of main integration tests principles
 @ExtendWith(SpringExtension.class)
-@SpringBootTest(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, properties = {("spring.h2.console.enabled=true"),("spring.h2.console.path=/h2-console")})
+@SpringBootTest
+//(webEnvironment = SpringBootTest.WebEnvironment.DEFINED_PORT, properties = {("spring.h2.console.enabled=true"),("spring.h2.console.path=/h2-console")})
 class ActivityDaoImplTest {
 	
 	@Autowired
